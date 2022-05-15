@@ -1,34 +1,48 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
-import {Volume} from '../components/Home/domain/volume';
-import {Volumes} from '../components/Home/domain/volumes';
-import {searchVolumes} from '../thunks/booksThunk';
+import {Volume, Volumes} from '../components/Home/domain';
+import {searchVolume, searchVolumes} from '../thunks/booksThunk';
+
+type VolumesEmptyState = {
+  isLoading: boolean;
+};
+
+type VolumeEmptyState = {
+  isLoading: boolean;
+};
 
 export type BooksState = {
-  volumes: Volumes | object;
-  volume: Volume | object;
+  volumes: Volumes | VolumesEmptyState;
+  volume: Volume | VolumeEmptyState;
 };
 
 const initialState: BooksState = {
-  volumes: {},
-  volume: {},
+  volumes: {
+    isLoading: false,
+  },
+  volume: {
+    isLoading: false,
+  },
 };
 
 export const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    addVolumes: (state, action: PayloadAction<Volumes>) => {
-      state.volumes = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(searchVolumes.fulfilled, (state, {payload}) => {
       state.volumes = payload;
+      state.volumes.isLoading = false;
+    });
+    builder.addCase(searchVolumes.pending, state => {
+      state.volumes.isLoading = true;
+    });
+    builder.addCase(searchVolume.fulfilled, (state, {payload}) => {
+      state.volume = payload;
     });
   },
 });
 
-export const {addVolumes} = booksSlice.actions;
+export const {} = booksSlice.actions;
 
 export default booksSlice.reducer;

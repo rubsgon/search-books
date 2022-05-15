@@ -99,4 +99,5 @@ export type Volume = {
   searchInfo: {
     textSnippet: string;
   };
+  isLoading: boolean;
 };

@@ -4,4 +4,5 @@ export type Volumes = {
   kind: string;
   items: [Volume];
   totalItems: number;
+  isLoading: boolean;
 };
