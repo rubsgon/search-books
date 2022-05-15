@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Box, Button, Flex, HStack, Input} from 'native-base';
+import {Box, Button, Flex, HStack, Input, Spinner} from 'native-base';
 
-import {useBooks} from '../data/useBooks';
+import {useBooks} from '../hooks/useBooks';
+import {useAppSelector} from '../../../../redux/hooks';
 
 const SearchBar = () => {
   const [book, setBook] = useState<string>('');
+  const isLoading = useAppSelector(state => state.books.volumes.isLoading);
 
   const handleBook = (text: string) => setBook(text);
 
@@ -20,7 +22,11 @@ const SearchBar = () => {
             flex={1}
             placeholder="Gostaria de buscar livros?"
           />
-          <Button onPress={() => searchVolumes(book)}>Buscar</Button>
+          {book === '' || (
+            <Button onPress={() => searchVolumes(book)}>
+              {isLoading ? <Spinner color="white" /> : 'Buscar'}
+            </Button>
+          )}
         </HStack>
       </Flex>
     </Box>
