@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Home from './screens/Home';
+import Home from './core/components/Home';
 
 const Routes = () => {
   const {Navigator, Screen} = createNativeStackNavigator();
