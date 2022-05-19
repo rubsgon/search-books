@@ -1,30 +1,42 @@
 import React, {useState} from 'react';
 import {Box, Button, Flex, HStack, Input, Spinner} from 'native-base';
+import {Keyboard} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {useBooks} from '../hooks/useBooks';
-import {useAppSelector} from '../../../../redux/hooks';
 
 const SearchBar = () => {
-  const [book, setBook] = useState<string>('');
-  const isLoading = useAppSelector(state => state.books.volumes.isLoading);
+  const [searchText, setSearchText] = useState<string>('');
 
-  const handleBook = (text: string) => setBook(text);
+  const handleSearchText = (text: string) => setSearchText(text);
 
-  const {searchVolumes} = useBooks();
+  const {searchVolumes, volumes} = useBooks();
 
   return (
-    <Box mt={8} mx={8}>
+    <Box mt={5} mx={8}>
       <Flex>
         <HStack space={2}>
           <Input
-            value={book}
-            onChangeText={handleBook}
+            value={searchText}
+            onChangeText={handleSearchText}
             flex={1}
             placeholder="Gostaria de buscar livros?"
           />
-          {book === '' || (
-            <Button onPress={() => searchVolumes(book)}>
-              {isLoading ? <Spinner color="white" /> : 'Buscar'}
+          {searchText === '' || (
+            <Button
+              bg="gray.600"
+              startIcon={
+                volumes.isLoading ? (
+                  <></>
+                ) : (
+                  <Icon name="search" size={15} color="white" />
+                )
+              }
+              onPress={() => {
+                searchVolumes(searchText);
+                Keyboard.dismiss();
+              }}>
+              {volumes.isLoading ? <Spinner color="white" /> : null}
             </Button>
           )}
         </HStack>
