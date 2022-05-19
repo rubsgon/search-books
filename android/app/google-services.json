@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "554874270517",
+    "project_id": "rubens-search-books",
+    "storage_bucket": "rubens-search-books.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554874270517:android:b56b70f54d50ed601a127c",
+        "android_client_info": {
+          "package_name": "com.searchbooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554874270517-3lrqcsoj3df2182lrkdav4vkk6dqs1a8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS8tWUMcJONj5UPNR0QSo1Ep_0UXkTl44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554874270517-3lrqcsoj3df2182lrkdav4vkk6dqs1a8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
