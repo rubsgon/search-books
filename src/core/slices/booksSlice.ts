@@ -1,7 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {Volume, Volumes} from '../components/Home/domain';
-import {searchVolume, searchVolumes} from '../thunks/booksThunk';
+import {
+  getMyFavorites,
+  searchVolume,
+  searchVolumes,
+} from '../thunks/booksThunk';
 
 type VolumesEmptyState = {
   isLoading: boolean;
@@ -14,6 +18,7 @@ type VolumeEmptyState = {
 export type BooksState = {
   volumes: Volumes | VolumesEmptyState;
   volume: Volume | VolumeEmptyState;
+  myFavorites: Volumes | object;
 };
 
 const initialState: BooksState = {
@@ -23,6 +28,7 @@ const initialState: BooksState = {
   volume: {
     isLoading: false,
   },
+  myFavorites: {},
 };
 
 export const booksSlice = createSlice({
@@ -39,6 +45,13 @@ export const booksSlice = createSlice({
     });
     builder.addCase(searchVolume.fulfilled, (state, {payload}) => {
       state.volume = payload;
+      state.volumes.isLoading = false;
+    });
+    builder.addCase(searchVolume.pending, state => {
+      state.volumes.isLoading = true;
+    });
+    builder.addCase(getMyFavorites.fulfilled, (state, {payload}) => {
+      state.myFavorites = payload;
     });
   },
 });
