@@ -3,7 +3,7 @@ import {Box, Button, Flex, HStack, Input, Spinner} from 'native-base';
 import {Keyboard} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import {useBooks} from '../hooks/useBooks';
+import {useBooks} from '../../../hooks/useBooks';
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState<string>('');

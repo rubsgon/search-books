@@ -3,7 +3,7 @@ import {Box, Container, Text} from 'native-base';
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 import {isEmpty} from 'lodash';
 
-import {useAuth} from '../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 
 const HelloUser = () => {
   const {auth, signIn} = useAuth();

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {Volume, Volumes} from '../components/Home/domain';
+import {Volume, Volumes} from '../types';
 import {
   getMyFavorites,
   searchVolume,

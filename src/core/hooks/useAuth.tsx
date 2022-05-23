@@ -1,7 +1,7 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../redux/hooks';
-import {signIn as signInApi} from '../../../thunks/authThunk';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {signIn as signInApi} from '../thunks/authThunk';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();

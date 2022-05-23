@@ -1,9 +1,9 @@
 import React from 'react';
 import {Box} from 'native-base';
 
-import HelloUser from './presentation/HelloUser';
-import SearchBar from './presentation/SearchBar';
-import VolumesList from './presentation/VolumesList';
+import HelloUser from './components/HelloUser';
+import SearchBar from './components/SearchBar';
+import VolumesList from './components/VolumesList';
 
 const Home = () => {
   return (

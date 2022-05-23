@@ -3,10 +3,11 @@ import {Box, Image, Text, Center, Container} from 'native-base';
 import {isEmpty} from 'lodash';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
-import {Volume, Volumes} from '../domain';
+import {Volume, Volumes} from '../../../types';
 import ErrorThumbnail from '../../../../common/ErrorThumbnail';
-import {useAuth} from '../hooks/useAuth';
+import {useAuth} from '../../../hooks/useAuth';
 
 type VolumesItemProps = {
   item: Volume;
@@ -15,6 +16,7 @@ type VolumesItemProps = {
 
 const VolumesItem = ({item, items}: VolumesItemProps) => {
   const {auth, signIn} = useAuth();
+  const {navigate} = useNavigation();
 
   const isFavorite = () =>
     items?.filter(itemFavorited => itemFavorited.id === item.id).length > 0;
@@ -31,6 +33,7 @@ const VolumesItem = ({item, items}: VolumesItemProps) => {
 
   const handleVolumeDetails = () => {
     console.log(item.id);
+    navigate('VolumeDetails', {id: item.id});
   };
 
   return (

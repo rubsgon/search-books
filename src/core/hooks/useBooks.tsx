@@ -1,10 +1,11 @@
-import {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../../redux/hooks';
+import {useCallback, useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {
   searchVolumes as searchVolumesApi,
+  searchVolume as searchVolumeApi,
   getMyFavorites as getMyFavoritesApi,
-} from '../../../thunks/booksThunk';
-import {Volume, Volumes} from '../domain';
+} from '../thunks/booksThunk';
+import {Volume, Volumes} from '../types';
 
 export const useBooks = () => {
   const dispatch = useAppDispatch();
@@ -20,9 +21,14 @@ export const useBooks = () => {
   console.log('selectors', books);
 
   const searchVolumes = (text: string) => dispatch(searchVolumesApi(text));
+  const searchVolume = useCallback(
+    (id: string) => dispatch(searchVolumeApi(id)),
+    [dispatch],
+  );
 
   return {
     searchVolumes,
+    searchVolume,
     volumes: books.volumes as Volumes,
     volume: books.volume as Volume,
     myFavorites: books.myFavorites as Volumes,

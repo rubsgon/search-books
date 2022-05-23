@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, FlatList} from 'native-base';
 
-import {useBooks} from '../hooks/useBooks';
+import {useBooks} from '../../../hooks/useBooks';
 import VolumesItem from './VolumesItem';
 
 const VolumesList = () => {

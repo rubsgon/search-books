@@ -3,7 +3,7 @@ import {TypedUseSelectorHook} from 'react-redux';
 import {RootState} from '../../redux/store';
 
 import {googleapis} from '../../services/instances';
-import {Volume, Volumes} from '../components/Home/domain';
+import {Volume, Volumes} from '../types';
 
 export const searchVolumes = createAsyncThunk(
   'books/searchVolumes',
