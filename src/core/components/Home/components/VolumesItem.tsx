@@ -28,13 +28,11 @@ const VolumesItem = ({item, items}: VolumesItemProps) => {
     if (isEmpty(auth.userInfo?.user)) {
       signIn();
     } else {
-      console.log('favoritou!');
       dispatch(addOrRemoveVolume({id: item.id}));
     }
   };
 
   const handleVolumeDetails = () => {
-    console.log(item.id);
     navigate('VolumeDetails', {id: item.id});
   };
 

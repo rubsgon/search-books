@@ -18,8 +18,6 @@ export const useBooks = () => {
     }
   }, [auth, dispatch]);
 
-  console.log('selectors', books);
-
   const searchVolumes = (text: string) =>
     dispatch(searchVolumesApi({text, startIndex: 0, maxResults: 10}));
 

@@ -6,7 +6,6 @@ import {Volume, Volumes} from '../types';
 export const searchVolumes = createAsyncThunk(
   'books/searchVolumes',
   async ({text, startIndex, maxResults}) => {
-    console.log(startIndex);
     const {data} = await googleapis.books.get<Volumes>(
       `/volumes?q=${text}&startIndex=${startIndex}&maxResults=${maxResults}`,
     );
