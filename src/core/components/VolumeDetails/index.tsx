@@ -34,21 +34,21 @@ const VolumeDetails = () => {
           h={242}
         />
         <Box flex={1}>
-          <Text fontSize={24}>{volume.volumeInfo.title}</Text>
+          <Text fontSize={24}>{volume.volumeInfo?.title}</Text>
           <Text
             color="gray.500"
-            mt={3}>{`Por: ${volume.volumeInfo.authors}`}</Text>
-          <Text color="gray.500">{`Publicação: ${volume.volumeInfo.publishedDate}`}</Text>
-          <Text color="gray.500">{`Páginas: ${volume.volumeInfo.pageCount}`}</Text>
-          <Text color="gray.500">{`Editora: ${volume.volumeInfo.publisher}`}</Text>
-          <Text color="gray.500">{`Formato: ${volume.volumeInfo.printType}`}</Text>
-          <Text color="gray.500">{`Idioma: ${volume.volumeInfo.language}`}</Text>
-          <Text color="gray.500">{`ISBN: ${volume.volumeInfo.industryIdentifiers[0].identifier}, ${volume.volumeInfo.industryIdentifiers[1].identifier}`}</Text>
+            mt={3}>{`Por: ${volume.volumeInfo?.authors}`}</Text>
+          <Text color="gray.500">{`Publicação: ${volume.volumeInfo?.publishedDate}`}</Text>
+          <Text color="gray.500">{`Páginas: ${volume.volumeInfo?.pageCount}`}</Text>
+          <Text color="gray.500">{`Editora: ${volume.volumeInfo?.publisher}`}</Text>
+          <Text color="gray.500">{`Formato: ${volume.volumeInfo?.printType}`}</Text>
+          <Text color="gray.500">{`Idioma: ${volume.volumeInfo?.language}`}</Text>
+          <Text color="gray.500">{`ISBN: ${volume.volumeInfo?.industryIdentifiers[0]?.identifier}, ${volume.volumeInfo?.industryIdentifiers[1]?.identifier}`}</Text>
         </Box>
       </Box>
       <ScrollView flex={1} mx={5} mt={10}>
         <Text fontSize={12} textAlign="center">
-          {volume.volumeInfo.description}
+          {volume.volumeInfo?.description}
         </Text>
       </ScrollView>
     </Box>
