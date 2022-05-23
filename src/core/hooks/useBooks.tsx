@@ -20,7 +20,21 @@ export const useBooks = () => {
 
   console.log('selectors', books);
 
-  const searchVolumes = (text: string) => dispatch(searchVolumesApi(text));
+  const searchVolumes = (text: string) =>
+    dispatch(searchVolumesApi({text, startIndex: 0, maxResults: 10}));
+
+  const searchMoreVolumes = () => {
+    if (books.volumes.items.length <= 30) {
+      dispatch(
+        searchVolumesApi({
+          text: books.volumes.search,
+          startIndex: 0,
+          maxResults: books.volumes.items.length + 10,
+        }),
+      );
+    }
+  };
+
   const searchVolume = useCallback(
     (id: string) => dispatch(searchVolumeApi(id)),
     [dispatch],
@@ -29,6 +43,7 @@ export const useBooks = () => {
   return {
     searchVolumes,
     searchVolume,
+    searchMoreVolumes,
     volumes: books.volumes as Volumes,
     volume: books.volume as Volume,
     myFavorites: books.myFavorites as Volumes,

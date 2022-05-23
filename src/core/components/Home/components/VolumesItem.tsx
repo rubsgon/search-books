@@ -62,6 +62,7 @@ const VolumesItem = ({item, items}: VolumesItemProps) => {
         <Center mr={2}>
           {item.volumeInfo?.imageLinks?.smallThumbnail ? (
             <Image
+              alt="capa"
               source={{uri: item.volumeInfo?.imageLinks?.smallThumbnail}}
               resizeMode="stretch"
               w={100}

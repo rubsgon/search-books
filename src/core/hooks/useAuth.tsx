@@ -17,8 +17,6 @@ export const useAuth = () => {
 
   const signIn = () => dispatch(signInApi());
 
-  console.log('selectors', auth);
-
   return {
     signIn,
     auth,

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Box, FlatList} from 'native-base';
+import {Box, FlatList, Spinner} from 'native-base';
 
 import {useBooks} from '../../../hooks/useBooks';
 import VolumesItem from './VolumesItem';
 
 const VolumesList = () => {
-  const {volumes, myFavorites} = useBooks();
+  const {volumes, myFavorites, searchMoreVolumes} = useBooks();
 
   return (
     <Box mt={5} flex={1}>
@@ -15,6 +15,11 @@ const VolumesList = () => {
           <VolumesItem item={item} items={myFavorites?.items} />
         )}
         showsVerticalScrollIndicator={false}
+        onEndReached={() => searchMoreVolumes()}
+        onEndReachedThreshold={0}
+        ListFooterComponent={
+          volumes.isLoading ? <Spinner color="black" /> : null
+        }
       />
     </Box>
   );

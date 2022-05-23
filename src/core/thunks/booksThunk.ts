@@ -1,15 +1,16 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {TypedUseSelectorHook} from 'react-redux';
-import {RootState} from '../../redux/store';
 
 import {googleapis} from '../../services/instances';
 import {Volume, Volumes} from '../types';
 
 export const searchVolumes = createAsyncThunk(
   'books/searchVolumes',
-  async (volume: string) => {
-    const {data} = await googleapis.books.get<Volumes>('/volumes?q=' + volume);
-    return data;
+  async ({text, startIndex, maxResults}) => {
+    console.log(startIndex);
+    const {data} = await googleapis.books.get<Volumes>(
+      `/volumes?q=${text}&startIndex=${startIndex}&maxResults=${maxResults}`,
+    );
+    return {data, text};
   },
 );
 

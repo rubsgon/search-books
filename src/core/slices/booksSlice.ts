@@ -39,7 +39,8 @@ export const booksSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(searchVolumes.fulfilled, (state, {payload}) => {
-      state.volumes = payload;
+      state.volumes = payload.data;
+      state.volumes.search = payload.text;
       state.volumes.isLoading = false;
     });
     builder.addCase(searchVolumes.pending, state => {
