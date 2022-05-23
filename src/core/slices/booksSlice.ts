@@ -18,7 +18,7 @@ type VolumeEmptyState = {
 export type BooksState = {
   volumes: Volumes | VolumesEmptyState;
   volume: Volume | VolumeEmptyState;
-  myFavorites: Volumes | object;
+  myFavorites: Volumes | VolumesEmptyState;
 };
 
 const initialState: BooksState = {
@@ -28,7 +28,9 @@ const initialState: BooksState = {
   volume: {
     isLoading: false,
   },
-  myFavorites: {},
+  myFavorites: {
+    isLoading: false,
+  },
 };
 
 export const booksSlice = createSlice({
@@ -52,6 +54,10 @@ export const booksSlice = createSlice({
     });
     builder.addCase(getMyFavorites.fulfilled, (state, {payload}) => {
       state.myFavorites = payload;
+      state.myFavorites.isLoading = false;
+    });
+    builder.addCase(getMyFavorites.pending, state => {
+      state.myFavorites.isLoading = true;
     });
   },
 });

@@ -8,6 +8,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Volume, Volumes} from '../../../types';
 import ErrorThumbnail from '../../../../common/ErrorThumbnail';
 import {useAuth} from '../../../hooks/useAuth';
+import {useDispatch} from 'react-redux';
+import {addOrRemoveVolume} from '../../../thunks/booksThunk';
 
 type VolumesItemProps = {
   item: Volume;
@@ -17,17 +19,17 @@ type VolumesItemProps = {
 const VolumesItem = ({item, items}: VolumesItemProps) => {
   const {auth, signIn} = useAuth();
   const {navigate} = useNavigation();
+  const dispatch = useDispatch();
 
   const isFavorite = () =>
     items?.filter(itemFavorited => itemFavorited.id === item.id).length > 0;
-
-  console.log(auth);
 
   const handleToggleFavorite = () => {
     if (isEmpty(auth.userInfo?.user)) {
       signIn();
     } else {
       console.log('favoritou!');
+      dispatch(addOrRemoveVolume({id: item.id}));
     }
   };
 

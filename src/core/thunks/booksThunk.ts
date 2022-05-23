@@ -37,3 +37,38 @@ export const getMyFavorites = createAsyncThunk(
     return data;
   },
 );
+
+export const addOrRemoveVolume = createAsyncThunk(
+  'books/addOrRemoveVolume',
+  async (args, {getState, dispatch}) => {
+    const state = getState();
+    const headers = {
+      headers: {
+        Authorization: 'Bearer ' + state.auth.accessToken,
+      },
+    };
+
+    const {items} = getState().books.myFavorites;
+
+    if (
+      !items ||
+      items?.filter(itemFavorited => itemFavorited.id === args.id).length === 0
+    ) {
+      const {dataAddVolume} = await googleapis.books.post(
+        `/mylibrary/bookshelves/0/addVolume?volumeId=${args.id}`,
+        {},
+        headers,
+      );
+    } else {
+      const {dataRemoveVolume} = await googleapis.books.post(
+        `/mylibrary/bookshelves/0/removeVolume?volumeId=${args.id}`,
+        {},
+        headers,
+      );
+    }
+
+    await dispatch(getMyFavorites());
+
+    return null;
+  },
+);
